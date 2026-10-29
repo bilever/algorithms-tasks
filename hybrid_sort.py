@@ -1,7 +1,5 @@
 import random
 import time
-
-# 1. Insertion Sort للقطع الصغيرة
 def insertion_sort(arr, left, right):
     for i in range(left + 1, right + 1):
         key = arr[i]
@@ -11,7 +9,6 @@ def insertion_sort(arr, left, right):
             j -= 1
         arr[j + 1] = key
 
-# دمج نصفي المصفوفة
 def merge(arr, left, mid, right):
     left_part = arr[left:mid + 1]
     right_part = arr[mid + 1:right + 1]
@@ -38,7 +35,6 @@ def merge(arr, left, mid, right):
         j += 1
         k += 1
 
-# 2. Hybrid Sort: التحويل لـ Insertion Sort لو الحجم <= k
 def hybrid_sort(arr, left, right, k):
     if right - left + 1 <= k:
         insertion_sort(arr, left, right)
@@ -48,7 +44,6 @@ def hybrid_sort(arr, left, right, k):
         hybrid_sort(arr, mid + 1, right, k)
         merge(arr, left, mid, right)
 
-# دالة مساعدة لتشغيل الفرز
 def sort_with_cutoff(data, k):
     arr_copy = data.copy()
     hybrid_sort(arr_copy, 0, len(arr_copy) - 1, k)
@@ -59,7 +54,6 @@ if __name__ == "__main__":
     print(f"Generating random dataset with {DATA_SIZE} elements...")
     dataset = [random.randint(1, 100000) for _ in range(DATA_SIZE)]
 
-    # تجربة قيم مختلفة لقيمة k (Cutoff)
     k_values = [1, 5, 10, 15, 20, 30, 50, 100]
     
     print("\n-------------------------------------------")
